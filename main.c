@@ -1,6 +1,6 @@
-#include "insertion_sort.c"
-#include "sum_binary_integers.c"
-#include "selection_sort.c"
+#include "sort/insertion_sort.c"
+#include "bits-manipulation/sum_binary_integers.c"
+#include "sort/selection_sort.c"
 
 int main() {
     insertion_sort_tests();

@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "array.h"
+#include "../helper/array.h"
 
 void selection_sort(int A[], int n) {
     printf("selection_sort\n");

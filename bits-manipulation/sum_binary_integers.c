@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "array.h"
+#include "../helper/array.h"
 
 void sum_binary_integers() {
     printf("sum_binary_integers\n");

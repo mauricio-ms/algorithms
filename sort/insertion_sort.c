@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "array.h"
+#include "../helper/array.h"
 
 void insertion_sort_increasing_order(int A[], int n) {
     printf("insertion_sort_increasing_order\n");
