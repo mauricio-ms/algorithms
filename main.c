@@ -1,10 +1,14 @@
 #include <stdio.h>
 
-void insertion_sort_increasing_order() {
-    printf("insertion_sort_increasing_order\n");
+void print_array(int A[], int n) {
+    for (int i = 0; i < n; i++) {
+        printf("%d ", A[i]);
+    }
+    printf("\n");
+}
 
-    int n = 6;
-    int A[6] = {31, 41, 59, 26, 41, 58};
+void insertion_sort_increasing_order(int A[], int n) {
+    printf("insertion_sort_increasing_order\n");
 
     for (int j = 1; j < n; j++) {
         int key = A[j];
@@ -17,17 +21,12 @@ void insertion_sort_increasing_order() {
         A[i + 1] = key;
     }
 
-    for (int k = 0; k < n; k++) {
-        printf("%d ", A[k]);
-    }
-    printf("\n");
+//    int n = sizeof(A)/sizeof(A[0]);
+    print_array(A, n);
 }
 
-void insertion_sort_decreasing_order() {
+void insertion_sort_decreasing_order(int A[], int n) {
     printf("insertion_sort_decreasing_order\n");
-
-    int n = 6;
-    int A[6] = {31, 41, 59, 26, 41, 58};
 
     for (int j = 1; j < n; j++) {
         int key = A[j];
@@ -40,10 +39,7 @@ void insertion_sort_decreasing_order() {
         A[i + 1] = key;
     }
 
-    for (int k = 0; k < n; k++) {
-        printf("%d ", A[k]);
-    }
-    printf("\n");
+    print_array(A, n);
 }
 
 void sum_binary_integers() {
@@ -67,17 +63,11 @@ void sum_binary_integers() {
 
     C[0] = remainder;
 
-    for (int k = 0; k < n + 1; k++) {
-        printf("%d ", C[k]);
-    }
-    printf("\n");
+    print_array(C, n+1);
 }
 
-void selection_sort() {
+void selection_sort(int A[], int n) {
     printf("selection_sort\n");
-
-    int n = 6;
-    int A[6] = {31, 41, 59, 26, 41, 58};
 
     for (int i=0; i<n-1; i++) {
         int lower = A[i];
@@ -96,16 +86,15 @@ void selection_sort() {
         }
     }
 
-    for (int k = 0; k < n; k++) {
-        printf("%d ", A[k]);
-    }
-    printf("\n");
+    print_array(A, n);
 }
 
 int main() {
-    insertion_sort_increasing_order();
-    insertion_sort_decreasing_order();
+    int n = 6;
+    int A[] = {31, 41, 59, 26, 41, 58};
+    insertion_sort_increasing_order(A, n);
+    insertion_sort_decreasing_order(A, n);
     sum_binary_integers();
-    selection_sort();
+    selection_sort(A, n);
     return 0;
 }
