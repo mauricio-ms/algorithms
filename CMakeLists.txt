@@ -3,4 +3,4 @@ project(algorithms C)
 
 set(CMAKE_C_STANDARD 99)
 
-add_executable(algorithms main.c helper/array.c)
+add_executable(algorithms main.c helper/array.c test/assertions.c)

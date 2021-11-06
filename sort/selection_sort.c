@@ -1,9 +1,7 @@
 #include <stdio.h>
-#include "../helper/array.h"
+#include "../test/assertions.h"
 
 void selection_sort(int A[], int n) {
-    printf("selection_sort\n");
-
     for (int i=0; i<n-1; i++) {
         int lower = A[i];
         int lowerIndex = i;
@@ -20,12 +18,14 @@ void selection_sort(int A[], int n) {
             A[lowerIndex] = current;
         }
     }
-
-    print_array(A, n);
 }
 
 void selection_sort_tests() {
+    printf("Running selection sort tests ...\n");
     int n = 6;
     int A[] = {31, 41, 59, 26, 41, 58};
+
+    int expected[] = {26, 31, 41, 41, 58, 59};
     selection_sort(A, n);
+    assert_array_equals(expected, n, A, n);
 }
