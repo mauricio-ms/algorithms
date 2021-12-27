@@ -22,6 +22,22 @@ void end_success_report() {
     printf(ANSI_COLOR_RESET);
 }
 
+int assert_int_equals(int expected, int actual) {
+    int assertion_error = expected != actual;
+    if (assertion_error) {
+        start_fail_report();
+        printf("ERROR: The actual int is different from the expected:\n");
+        printf("  ACTUAL=%d\n", actual);
+        printf("EXPECTED=%d\n", expected);
+        end_fail_report();
+    } else {
+        start_success_report();
+        printf("TEST PASSED\n");
+        end_success_report();
+    }
+    return assertion_error;
+}
+
 int assert_array_equals(int expected[], int expected_n, int actual[], int actual_n) {
     int assertion_error = 0;
     if (expected_n != actual_n) {
