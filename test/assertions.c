@@ -3,6 +3,7 @@
 #include "../helper/array.h"
 
 #define ANSI_COLOR_FAIL "\x1b[31m"
+#define ANSI_COLOR_SUCCESS "\033[0;32m"
 #define ANSI_COLOR_RESET "\x1b[0m"
 
 void start_fail_report() {
@@ -10,6 +11,14 @@ void start_fail_report() {
 }
 
 void end_fail_report() {
+    printf(ANSI_COLOR_RESET);
+}
+
+void start_success_report() {
+    printf(ANSI_COLOR_SUCCESS);
+}
+
+void end_success_report() {
     printf(ANSI_COLOR_RESET);
 }
 
@@ -34,6 +43,10 @@ int assert_array_equals(int expected[], int expected_n, int actual[], int actual
         printf("EXPECTED=");
         print_array(expected, expected_n);
         end_fail_report();
+    } else {
+        start_success_report();
+        printf("TEST PASSED\n");
+        end_success_report();
     }
     return assertion_error;
 }
