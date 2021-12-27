@@ -1,5 +1,3 @@
-#include <math.h>
-
 /**
  * Function responsible to execute the combine part of the merge sort algorithm.
  * A is an array and p, q, and r are indices into the array such that p <= q < r.
@@ -10,35 +8,25 @@
  * This procedure takes time O(n), where n = r - p + 1 is the total number of elements being merged.
  */
 void merge_without_sentinels(int A[], int p, int q, int r) {
-    int n1 = q - p + 1;
-    int n2 = r - q;
-    int L[n1], R[n2];
-    for (int i = 0; i < n1; i++) {
-        L[i] = A[p + i];
-    }
-    for (int j = 0; j < n2; j++) {
-        R[j] = A[q + j + 1];
+    int B[r - p];
+    for (int i = p; i <= q; i++) {
+        B[i] = A[i];
     }
 
-    int i = 0;
-    int j = 0;
-    for (int k = p; k <= r; k++) {
-        if (i == n1) {
-            A[k] = R[j];
-            j++;
-        } else if (j == n2) {
-            A[k] = L[i];
+    for (int j = q + 1; j <= r; j++) {
+        B[r + q + 1 - j] = A[j];
+    }
+
+    int i = p;
+    int j = r;
+    for (int k = p; k < r; k++) {
+        if (B[i] <= B[j]) {
+            A[k] = B[i];
             i++;
         } else {
-            if (L[i] <= R[j]) {
-                A[k] = L[i];
-                i++;
-            } else {
-                A[k] = R[j];
-                j++;
-            }
+            A[k] = B[j];
+            j--;
         }
-
     }
 }
 
@@ -60,10 +48,10 @@ void merge_sort_without_sentinels(int A[], int p, int r) {
 
 void merge_sort_without_sentinels_tests() {
     printf("Running merge sort without sentinels tests ...\n");
+
     int n = 7;
     int A[] = {31, 2, 41, 59, 26, 41, 58};
-
     int expected[] = {2, 26, 31, 41, 41, 58, 59};
-    merge_sort_without_sentinels(A, 0, n - 1);
+    merge_sort_without_sentinels(A, 0, n);
     assert_array_equals(expected, n, A, n);
 }
