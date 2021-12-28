@@ -12,8 +12,6 @@ void insertion_sort_increasing_order(int A[], int n) {
         }
         A[i + 1] = key;
     }
-
-//    int n = sizeof(A)/sizeof(A[0]);
 }
 
 void insertion_sort_decreasing_order(int A[], int n) {

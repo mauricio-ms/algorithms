@@ -6,6 +6,7 @@
 #include "sort/insertion_sort_recursive.c"
 #include "search/linear_search.c"
 #include "search/binary_search.c"
+#include "sort/insertion_sort_with_binary_search.c"
 
 int main() {
     insertion_sort_tests();
@@ -16,5 +17,6 @@ int main() {
     insertion_sort_recursive_tests();
     linear_search_tests();
     binary_search_tests();
+    insertion_sort_with_binary_search_tests();
     return 0;
 }

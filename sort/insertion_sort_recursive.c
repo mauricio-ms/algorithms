@@ -21,7 +21,7 @@ void insertion_sort_recursive_tests() {
     int n = 6;
     int A[] = {31, 41, 59, 26, 41, 58};
 
-    int expected_increasing_order[] = {26, 31, 41, 41, 58, 59};
+    int expected[] = {26, 31, 41, 41, 58, 59};
     insertion_sort_recursive(A, n-1);
-    assert_array_equals(expected_increasing_order, n, A, n);
+    assert_array_equals(expected, n, A, n);
 }
