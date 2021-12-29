@@ -7,6 +7,7 @@
 #include "search/linear_search.c"
 #include "search/binary_search.c"
 #include "sort/insertion_sort_with_binary_search.c"
+#include "array/find_maximum_subarray.c"
 
 int main() {
     insertion_sort_tests();
@@ -18,5 +19,6 @@ int main() {
     linear_search_tests();
     binary_search_tests();
     insertion_sort_with_binary_search_tests();
+    find_maximum_subarray_tests();
     return 0;
 }
