@@ -20,5 +20,8 @@ int main() {
     binary_search_tests();
     insertion_sort_with_binary_search_tests();
     find_maximum_subarray_tests();
+
+    // Plots
+    //get_crossover_between_find_maximum_subarray_algorithms();
     return 0;
 }
