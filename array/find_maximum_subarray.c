@@ -10,15 +10,15 @@ typedef struct {
     int sum;
 } max_subarray;
 
-max_subarray find_maximum_subarray_brute_force(int A[], int n) {
+max_subarray find_maximum_subarray_brute_force(int A[], int low, int high) {
     max_subarray maximum;
     maximum.start = -1;
     maximum.end = -1;
     maximum.sum = (int) -INFINITY;
 
-    for (int i = 0; i < n; i++) {
+    for (int i = low; i < high; i++) {
         int sum = 0;
-        for (int j = i; j < n; j++) {
+        for (int j = i; j < high; j++) {
             sum += A[j];
             if (sum > maximum.sum) {
                 maximum.start = i;
@@ -59,14 +59,11 @@ max_subarray find_max_crossing_subarray(int A[], int low, int mid, int high) {
     return maximum;
 }
 
-max_subarray find_maximum_subarray_divide_and_conquer(int A[], int low, int high) {
-    if (high == low) {
-        max_subarray maximum;
-        maximum.start = low;
-        maximum.end = high;
-        maximum.sum = A[low];
+#define CROSSOVER 40
 
-        return maximum;
+max_subarray find_maximum_subarray_divide_and_conquer(int A[], int low, int high) {
+    if ((high-low) <= CROSSOVER) {
+        return find_maximum_subarray_brute_force(A, low, high);
     } else {
         int mid = (low + high) / 2;
         max_subarray maximum_left = find_maximum_subarray_divide_and_conquer(A, low, mid);
@@ -92,7 +89,7 @@ void find_maximum_subarray_tests() {
     int expected_sum = 43;
 
     printf("CASE: Brute-Force\n");
-    max_subarray actual_brute_force = find_maximum_subarray_brute_force(A, n);
+    max_subarray actual_brute_force = find_maximum_subarray_brute_force(A, 0, n);
     assert_int_equals(expected_start, actual_brute_force.start);
     assert_int_equals(expected_end, actual_brute_force.end);
     assert_int_equals(expected_sum, actual_brute_force.sum);
@@ -119,7 +116,7 @@ void get_crossover_between_find_maximum_subarray_algorithms() {
         fill_random_array(A, n);
 
         clock_t begin_brute_force = clock();
-        find_maximum_subarray_brute_force(A, n);
+        find_maximum_subarray_brute_force(A, 0, n);
         clock_t end_brute_force = clock();
         brute_force_times[n] = (double) (end_brute_force - begin_brute_force) / CLOCKS_PER_SEC;
 
