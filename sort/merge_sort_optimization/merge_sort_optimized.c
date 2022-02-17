@@ -1,5 +1,7 @@
+#include <stdio.h>
+#include <stdlib.h>
 #include <math.h>
-#include "../helper/array.h"
+#include "../../helper/array.h"
 
 /**
  * Function responsible to execute the combine part of the merge sort algorithm.
@@ -37,6 +39,19 @@ void merge(int A[], int p, int q, int r) {
     }
 }
 
+void insertion_sort(int A[], int p, int r) {
+    for (int j = p; j <= r; j++) {
+        int key = A[j];
+        // Insert A[j] into the sorted sequence A[0..j - 1]
+        int i = j - 1;
+        while (i >= p && A[i] > key) {
+            A[i + 1] = A[i];
+            i--;
+        }
+        A[i + 1] = key;
+    }
+}
+
 /**
  * Merge sort algorithm closely follows the divide-and-conquer paradigm. Intuitively, it operates as follow:
  *
@@ -44,23 +59,25 @@ void merge(int A[], int p, int q, int r) {
  * Conquer: Sort the two subsequences recursively using merge sort.
  * Combine: Merge the two sorted subsequences to produce the sorted answer.
  */
-void merge_sort(int A[], int p, int r) {
+void merge_sort(int A[], int p, int r, int k) {
     if (p < r) {
         int q = (p + r) / 2;
-        merge_sort(A, p, q);
-        merge_sort(A, q + 1, r);
-        printf("p=%d, q=%d, r=%d\n", p, q, r);
+        if ((q-p) <= k) {
+            insertion_sort(A, p, q);
+            insertion_sort(A, q + 1, r);
+        } else {
+            merge_sort(A, p, q, k);
+            merge_sort(A, q + 1, r, k);
+        }
         merge(A, p, q, r);
-        print_array(A, 9);
     }
 }
 
-void merge_sort_tests() {
-    printf("Running merge sort tests ...\n");
-    int A[] = {383, 886, 777, 915, 793, 335, 386, 492, 649};
-    int n = sizeof(A) / sizeof(int);
+int main(int argc, char **argv) {
+    int n = atoi(argv[1]);
+    int k = atoi(argv[2]);
+    int A[n];
+    fill_random_array(A, n);
 
-    int expected[] = {335, 383, 386, 492, 649, 777, 793, 886, 915};
-    merge_sort(A, 0, n - 1);
-    assert_array_equals(expected, n, A, n);
+    merge_sort(A, 0, n - 1, k);
 }
