@@ -1,3 +1,8 @@
 # Algorithms
 
-Repository with implementations in language C of algorithms explained in Cormen book.
+Repository with implementations of algorithms books.
+
+## Modules
+
+- cormen: Introduction to Algorithms Third Edition (Cormen | Leiserson | Rivest | Stein)
+- sedgewick: Algorithms Fourth Edition (Sedgewick | Wayne)
